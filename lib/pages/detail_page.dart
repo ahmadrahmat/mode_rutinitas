@@ -93,87 +93,61 @@ class DetailWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mode ${modeData.name}'),
-        backgroundColor: modeData.color,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 64),
-        child: Center(
-          child: SizedBox(
-            width: 1200,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 32),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
+        appBar: AppBar(
+          title: Text('Mode ${modeData.name}'),
+          backgroundColor: modeData.color,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // icon dan judul
+                      Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(modeData.imageAsset),
+                          Icon(
+                            modeData.iconData,
+                            size: 35.0,
+                            color: modeData.color,
+                          ),
+                          const SizedBox(width: 8.0),
+                          Text(
+                            modeData.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 30.0, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(width: 32),
-                    Expanded(
-                      child: Card(
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(
-                                    modeData.iconData,
-                                    size: 35.0,
-                                    color: modeData.color,
-                                  ),
-                                  const SizedBox(width: 8.0),
-                                  Text(
-                                    modeData.name,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16.0),
-                                child: Text(
-                                  modeData.description,
-                                  textAlign: TextAlign.justify,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                              ),
-                              const ButtonBar(
-                                alignment: MainAxisAlignment.center,
-                                children: [
-                                  ActiveButton(),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
+
+                      // gambar ukuran height 300
+                      const SizedBox(height: 20.0),
+                      Image.asset(modeData.imageAsset, height: 300.0),
+
+                      // deskripsi
+                      const SizedBox(height: 20.0),
+                      Text(
+                        modeData.description,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.normal),
                       ),
-                    ),
-                  ],
+
+                      // tombol
+                      const SizedBox(height: 20.0),
+                      const Center(child: ActiveButton()),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
